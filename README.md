@@ -38,4 +38,4 @@ A modern banking application built with Angular and Spring Boot, providing a sea
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/benchekchou/e-bank.git
+git clone https://github.com/benchekchou/e-front.git
