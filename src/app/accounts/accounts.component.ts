@@ -1,5 +1,8 @@
+import { AccountsService } from './../services/accounts.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { AccountDetail } from '../model/account.model';
 
 @Component({
   selector: 'app-accounts',
@@ -9,11 +12,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AccountsComponent  implements OnInit{
 
-  accountFormGroup!:FormGroup
+  accountFormGroup!:FormGroup;
+  currentPage:number=0;
+  pageSize:number=5;
+  accountObservable!:Observable<AccountDetail>
 
-constructor(private fb:FormBuilder){
-
-}
+constructor(private fb:FormBuilder,private accountsService:AccountsService){}
 
   ngOnInit(): void {
     this.accountFormGroup=this.fb.group({
@@ -23,7 +27,9 @@ constructor(private fb:FormBuilder){
   }
 
   handleSearchAccount() {
-    throw new Error('Method not implemented.');
+let accountId:string=this.accountFormGroup.value.accountId;
+this.accountObservable=this.accountsService.getAccount(accountId,this.currentPage,this.pageSize)
+
     }
 
 

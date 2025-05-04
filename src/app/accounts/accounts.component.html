@@ -10,9 +10,33 @@
               <i class="bi bi-search"></i>
               Search
             </button>
-
           </div>
         </form>
+        <ng-container *ngIf="accountObservable | async as accountsDetails">
+          <div>
+            <label>Account ID:</label>
+            <label><strong>{{accountsDetails.accountId}}</strong></label>
+          </div>
+          <div>
+            <label>Balance:</label>
+            <label><strong>{{accountsDetails.balance | number}}</strong></label>
+          </div>
+          <table class="table">
+            <thead>
+              <th>ID</th><th>Description</th><th>Date</th><th>Type</th><th>Amounts</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let op of accountsDetails.AccountOperation">
+                <td>{{op.id}}</td>
+
+
+              </tr>
+
+            </tbody>
+
+          </table>
+        </ng-container>
+
 
       </div>
     </div>
